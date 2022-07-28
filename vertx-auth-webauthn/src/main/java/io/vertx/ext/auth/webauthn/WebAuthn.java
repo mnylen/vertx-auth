@@ -59,6 +59,13 @@ public interface WebAuthn extends AuthenticationProvider {
    * Gets a challenge and any other parameters for the {@code navigator.credentials.create()} call.
    *
    * The object being returned is described here <a href="https://w3c.github.io/webauthn/#dictdef-publickeycredentialcreationoptions">https://w3c.github.io/webauthn/#dictdef-publickeycredentialcreationoptions</a>
+   *
+   * The caller <strong>must</strong> extract the generated challenge and be able to re-produce it
+   * later for the {@link #authenticate(JsonObject)} call.
+   *
+   * The user object <strong>must</strong> contain base64 url encoded <code>id</code> attribute representing the
+   * user handle (see <a href="https://www.w3.org/TR/webauthn-2/#dom-publickeycredentialuserentity-id">https://www.w3.org/TR/webauthn-2/#dom-publickeycredentialuserentity-id</a>)
+   *
    * @param user    - the user object with name and optionally displayName and icon
    * @param handler server encoded make credentials request
    * @return fluent self
